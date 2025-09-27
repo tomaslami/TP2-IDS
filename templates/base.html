@@ -1,0 +1,59 @@
+    <!doctype html>
+    <html lang="es">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Unidos por el Deporte{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
+    {% block head_extra %}{% endblock %}
+    </head>
+    <body>
+    <header class="navbar">
+        <div class="container">
+        <a class="brand" href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Unidos por el Deporte" class="logo" />
+        </a>
+        <nav>
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="#auspiciantes">Auspiciantes</a>
+        </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-footer container">
+        <section class="footer-col footer-brand">
+          <a class="footer-logo" href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Unidos por el Deporte" class="logo" />
+          </a>
+          <p class="footer-text">
+           Rally MTB 2025 en Tandil.
+          </p>
+        </section>
+
+        <nav class="footer-col footer-nav" aria-label="Navegación">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('index') }}#mapa">Recorrido</a></li>
+            <li><a href="{{ url_for('index') }}#kit">Kit</a></li>
+            <li><a href="{{ url_for('index') }}#auspiciantes">Auspiciantes</a></li>
+            <li><a href="{{ url_for('index') }}#docs">Documentación</a></li>
+          </ul>
+        </nav>
+
+        <section class="footer-col footer-cta">
+          <i></i>
+          <i></i>
+          <i></i>
+        </section>
+      </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+    </body>
+    </html>

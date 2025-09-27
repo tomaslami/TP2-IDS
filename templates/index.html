@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ evento.nombre }} - {{ evento.lugar }}{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>{{ evento.nombre }}</h1>
+    <p class="lead">{{ evento.descripcion }}</p>
+    <ul>
+      <li><strong>Fecha:</strong> {{ evento.fecha }}</li>
+      <li><strong>Horario:</strong> {{ evento.horario }}</li>
+      <li><strong>Lugar:</strong> {{ evento.lugar }}</li>
+      <li><strong>Tipo:</strong> {{ evento.tipo_carrera }}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Modalidades y costo</h2>
+    <ul>
+      {% for m in evento.modalidades %}
+        <li>{{ m.nombre }} — USD {{ m.valor }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section id="kit">
+    <h2>Kit</h2>
+    <ul>{% for i in evento.kit %}<li>{{ i }}</li>{% endfor %}</ul>
+  </section>
+
+  <section id="auspiciantes">
+    <h2>Auspiciantes</h2>
+    <ul>{% for a in evento.auspiciantes %}<li>{{ a }}</li>{% endfor %}</ul>
+  </section>
+
+  <section id="docs">
+    <h2>Documentación</h2>
+    <ul>
+      <li><a download href="{{ url_for('static', filename='docs/' + evento.deslinde_pdf) }}">Descargar deslinde</a></li>
+      <li><a target="_blank" href="{{ url_for('static', filename='docs/' + evento.reglamento_pdf) }}">Ver reglamento</a></li>
+    </ul>
+  </section>
+{% endblock %}

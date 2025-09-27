@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}500 - Error del servidor{% endblock %}
+{% block content %}
+  <h1>Ocurrió un error en el servidor.</h1>
+  <p>Intentá nuevamente o volvé al <a href="{{ url_for('index') }}">inicio</a>.</p>
+{% endblock %}
