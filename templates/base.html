@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ info.nombre }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#recorrido">Recorrido</a></li>
+      <li><a href="#hidratacion">Hidratación</a></li>
+      <li><a href="#kit">Kit</a></li>
+      <li><a href="#modalidades">Modalidades</a></li>
+      <li><a href="#auspiciantes">Auspiciantes</a></li>
+      <li><a href="{{ url_for('registration') }}">Inscribirme</a></li>
+    </ul>
+  </nav>
+
+
+  <main style="margin-top:80px;">
+    {% block content %}{% endblock %}
+  </main>
+
+
+  <footer>
+    <p>Contacto: organizacion@ejemplo.com</p>
+    <small>© {{ info.organizador }}</small>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+
+</html>

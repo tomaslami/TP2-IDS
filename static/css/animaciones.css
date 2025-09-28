@@ -1,0 +1,11 @@
+/* Animacion de aparicion para elementos con la clase 'animar-aparecer' */
+.animar-aparecer {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.animar-aparecer.aparecido {
+    opacity: 1;
+    transform: none;
+}
