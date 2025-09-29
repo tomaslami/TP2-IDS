@@ -1,42 +1,29 @@
 {% extends "base.html" %}
-{% block title %}{{ evento.nombre }} - {{ evento.lugar }}{% endblock %}
-
+{% block title %}{{ info.nombre }}{% endblock %}
 {% block content %}
-  <section class="hero">
-    <h1>{{ evento.nombre }}</h1>
-    <p class="lead">{{ evento.descripcion }}</p>
-    <ul>
-      <li><strong>Fecha:</strong> {{ evento.fecha }}</li>
-      <li><strong>Horario:</strong> {{ evento.horario }}</li>
-      <li><strong>Lugar:</strong> {{ evento.lugar }}</li>
-      <li><strong>Tipo:</strong> {{ evento.tipo_carrera }}</li>
-    </ul>
-  </section>
+<h1>{{ info.nombre }}</h1>
+<p>{{ info.descripcion }}</p>
+<p><strong>Fecha:</strong> {{ info.fecha }} | <strong>Lugar:</strong> {{ info.lugar }}</p>
 
-  <section>
-    <h2>Modalidades y costo</h2>
-    <ul>
-      {% for m in evento.modalidades %}
-        <li>{{ m.nombre }} — USD {{ m.valor }}</li>
-      {% endfor %}
-    </ul>
-  </section>
+<h2>Recorrido / Mapa</h2>
+<div
+  style="width:100%; height:300px; background:#eee; display:flex; align-items:center; justify-content:center; color:#888; border:1px dashed #bbb; margin-bottom:10px;">
+  <!-- Aqui se puede agregar el mapa de la carrera -->
+  Espacio reservado para el mapa o puntos de interés
+</div>
+<p>Punto de largada/llegada: Plaza X, Tandil.</p>
 
-  <section id="kit">
-    <h2>Kit</h2>
-    <ul>{% for i in evento.kit %}<li>{{ i }}</li>{% endfor %}</ul>
-  </section>
+<h2>Puntos de hidratación</h2>
+<ul></ul>
 
-  <section id="auspiciantes">
-    <h2>Auspiciantes</h2>
-    <ul>{% for a in evento.auspiciantes %}<li>{{ a }}</li>{% endfor %}</ul>
-  </section>
+<h2>Kit de carrera</h2>
+<ul></ul>
 
-  <section id="docs">
-    <h2>Documentación</h2>
-    <ul>
-      <li><a download href="{{ url_for('static', filename='docs/' + evento.deslinde_pdf) }}">Descargar deslinde</a></li>
-      <li><a target="_blank" href="{{ url_for('static', filename='docs/' + evento.reglamento_pdf) }}">Ver reglamento</a></li>
-    </ul>
-  </section>
+<h2>Modalidades y costos</h2>
+<ul></ul>
+
+<h2>Auspiciantes</h2>
+<div></div>
+
+<a href="{{ url_for('static', filename='docs/deslinde.pdf') }}" target="_blank">Descargar deslinde (PDF)</a>
 {% endblock %}
