@@ -3,9 +3,9 @@ from flask_mail import Mail, Message
 import os
 
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = 'secret'
 
-# --- Config Mail (ajusta a tu proveedor/credenciales) ---
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -16,7 +16,6 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', 'tu-email@g
 
 mail = Mail(app)
 
-# --- Datos del evento (hardcodeado como pide la consigna) ---
 info = {
     'nombre': 'Rally MTB 2025',
     'organizador': 'Club Social y Deportivo Unidos por el Deporte',
@@ -31,10 +30,16 @@ info = {
         2: {'nombre': 'Larga (80km)', 'valor': '20000'}
     },
     'auspiciantes': [
-        # coloca aquí los nombres de archivos en /static/img/sponsors/
-        'sponsor-1.png', 'sponsor-2.png', 'sponsor-3.png'
+        'sponsor-1.png',
+        'sponsor-2.png',
+        'sponsor-3.png'
     ],
-    'puntos_hidratacion': [
+    'puntos_hidratacion_30': [
+        'Km 10 - RP 74',
+        'Km 20 - Arroyo del Fuerte',
+        'Km 30 - Paraje La Pastora'
+    ],
+    'puntos_hidratacion_80': [
         'Km 10 - RP 74',
         'Km 20 - Arroyo del Fuerte',
         'Km 30 - Paraje La Pastora',
@@ -62,14 +67,12 @@ def registration():
 
 @app.route('/register', methods=['POST'])
 def register():
-    # Datos del form
     nombre = request.form.get('nombre')
     email = request.form.get('email')
     dni = request.form.get('dni')
-    modalidad = request.form.get('modalidad')  # 'Corta (30km)' o 'Larga (80km)'
+    modalidad = request.form.get('modalidad')
     comentarios = request.form.get('comentarios', '')
 
-    # Envía mail a la organización
     try:
         body = (
             f"Inscripción recibida:\n\n"
@@ -88,13 +91,11 @@ def register():
         mail.send(msg)
         flash('Inscripción enviada. ¡Gracias por participar!', 'success')
     except Exception as e:
-        # Para depurar en desarrollo
         print(f"[ERROR MAIL] {e}")
         flash('No se pudo enviar el mail. Intenta nuevamente más tarde.', 'error')
 
     return redirect(url_for('registration'))
 
-# Descargas (deslinde, reglamento, etc.)
 @app.route('/docs/<path:filename>')
 def docs(filename):
     return send_from_directory('static/docs', filename)

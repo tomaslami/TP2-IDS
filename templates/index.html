@@ -17,31 +17,61 @@
 </section>
 <!-- End Hero -->
 
-<!-- ======= Recorrido / Mapa ======= -->
+<!-- Recorrido / Mapa -->
 <section id="recorrido" class="section">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
-      <h2>Recorrido / Mapa</h2>
-      <p>Punto de largada/llegada: {{ info.punto_largada_llegada }}</p>
+      <h2>Recorrido</h2>
     </div>
-    <div class="ratio ratio-16x9 rounded-3 shadow-sm mb-3">
-      <iframe src="{{ info.map_embed_src }}" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <div class="row g-4">
+      <div class="col-12 col-lg-6">
+        <div class="map-wrap">
+          <div class="ratio ratio-16x9">
+            <iframe
+            src="https://www.google.com/maps/d/u/0/embed?mid=1rtTG4Shdds9AXzqtPrSVPngnDM9RpOs&ehbc=2E312F"
+            allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-lg-6">
+        <div class="map-wrap">
+          <div class="ratio ratio-16x9">
+            <iframe
+              src="https://www.google.com/maps/d/u/0/embed?mid=1fxcvAarL2qw5WBjtp9k0C3xJsHTk4tg&ehbc=2E312F"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="text-muted">* El trazado puede estar sujeto a ajustes por condiciones climáticas.</p>
   </div>
 </section>
 
-<!-- ======= Puntos de Hidratación ======= -->
+<!-- Puntos de hidratación por carrera -->
 <section id="hidratacion" class="section">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
       <h2>Puntos de hidratación</h2>
     </div>
-    <ul class="list-group list-group-flush">
-      {% for p in info.puntos_hidratacion %}
-        <li class="list-group-item">{{ p }}</li>
-      {% endfor %}
-    </ul>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h3 class="h5">Corta (30 km)</h3>
+        <ul class="list-group list-group-flush">
+          {% for p in info.puntos_hidratacion_30 %}
+            <li class="list-group-item">{{ p }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h3 class="h5">Larga (80 km)</h3>
+        <ul class="list-group list-group-flush">
+          {% for p in info.puntos_hidratacion_80 %}
+            <li class="list-group-item">{{ p }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
