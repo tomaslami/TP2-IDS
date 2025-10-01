@@ -5,9 +5,11 @@ import os
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret' 
 
 # Variables de entorno para el envio de mail.
+
+app.config['SECRET_KEY'] = 'secret' 
+
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
 app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
 app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True') == 'True'
