@@ -1,96 +1,102 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}{{ info.nombre }}{% endblock %}</title>
 
-    <!-- Vendor CSS -->
-    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
+<head>
+  <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='images/logo.jpeg') }}" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}{{ info.nombre }}{% endblock %}</title>
 
-    <!-- Template CSS -->
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
-    <!-- Tus overrides (colores del club) -->
-    <link href="{{ url_for('static', filename='css/overrides.css') }}" rel="stylesheet" />
+  <!-- Vendor CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" />
 
-    {% block head %}{% endblock %}
-  </head>
+  <!-- Template CSS -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+  <!-- Tus overrides (colores del club) -->
+  <link href="{{ url_for('static', filename='css/overrides.css') }}" rel="stylesheet" />
 
-  <body class="page-index">
-    <!-- ======= Header / Navbar ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-      <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a href="{{ url_for('index') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" />
-          <h1 class="sitename ms-2">{{ info.nombre }}</h1>
-        </a>
+  {% block head %}{% endblock %}
+</head>
 
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="{{ url_for('index') }}#inicio" class="active">Inicio</a></li>
-            <li><a href="{{ url_for('index') }}#recorrido">Recorrido</a></li>
-            <li><a href="{{ url_for('index') }}#hidratacion">Hidratación</a></li>
-            <li><a href="{{ url_for('index') }}#kit">Kit</a></li>
-            <li><a href="{{ url_for('index') }}#modalidades">Modalidades</a></li>
-            <li><a href="{{ url_for('index') }}#auspiciantes">Auspiciantes</a></li>
-            <li><a href="{{ url_for('registration') }}">Inscribirme</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+<body class="page-index">
+  <!-- ======= Header / Navbar ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a href="{{ url_for('index') }}" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="logo" />
+        <h1 class="sitename ms-2">{{ info.nombre }}</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{{ url_for('index') }}#inicio" class="active">Inicio</a></li>
+          <li><a href="{{ url_for('index') }}#recorrido">Recorrido</a></li>
+          <li><a href="{{ url_for('index') }}#hidratacion">Hidratación</a></li>
+          <li><a href="{{ url_for('index') }}#kit">Kit</a></li>
+          <li><a href="{{ url_for('index') }}#modalidades">Modalidades</a></li>
+          <li><a href="{{ url_for('index') }}#auspiciantes">Auspiciantes</a></li>
+          <li><a href="{{ url_for('registration') }}">Inscribirme</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <main id="main" style="margin-top: 80px;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="container mt-3">
+      {% for category, message in messages %}
+      <div class="alert alert-{{ 'success' if category=='success' else 'danger' }} alert-dismissible fade show"
+        role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
       </div>
-    </header>
-    <!-- End Header -->
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
 
-    <main id="main" style="margin-top: 80px;">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="container mt-3">
-            {% for category, message in messages %}
-              <div class="alert alert-{{ 'success' if category=='success' else 'danger' }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
-    </main>
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-      <div class="container">
-        <h3 class="sitename">{{ info.organizador }}</h3>
-        <p>Contacto: <a href="mailto:{{ info.email_contacto }}">{{ info.email_contacto }}</a> · WhatsApp: <a href="https://wa.me/{{ info.whatsapp_contacto|replace(' ', '') }}" target="_blank">{{ info.whatsapp_contacto }}</a></p>
-        <div class="social-links d-flex justify-content-center">
-          <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-envelope"></i></a>
-        </div>
-        <div class="copyright">
-          <small>© {{ info.organizador }} · {{ info.nombre }}</small>
-        </div>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="container">
+      <h3 class="sitename">{{ info.organizador }}</h3>
+      <p>Contacto: <a href="mailto:{{ info.email_contacto }}">{{ info.email_contacto }}</a> · WhatsApp: <a
+          href="https://wa.me/{{ info.whatsapp_contacto|replace(' ', '') }}" target="_blank">{{ info.whatsapp_contacto
+          }}</a></p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-whatsapp"></i></a>
+        <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="d-inline-flex align-items-center justify-content-center"><i class="bi bi-envelope"></i></a>
       </div>
-    </footer>
-    <!-- End Footer -->
+      <div class="copyright">
+        <small>© {{ info.organizador }} · {{ info.nombre }}</small>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
 
-    <!-- Vendor JS -->
-    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <!-- Vendor JS -->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <!-- Template Main JS -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <!-- Template Main JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
-    <script>
-      AOS.init({ once: true });
-    </script>
+  <script>
+    AOS.init({ once: true });
+  </script>
 
-    {% block scripts %}{% endblock %}
-  </body>
+  {% block scripts %}{% endblock %}
+</body>
+
 </html>

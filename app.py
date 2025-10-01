@@ -30,9 +30,9 @@ info = {
         2: {'nombre': 'Larga (80km)', 'valor': '20000'}
     },
     'auspiciantes': [
-        'sponsor-1.png',
-        'sponsor-2.png',
-        'sponsor-3.png'
+        'sponsor1.png',
+        'sponsor2.png',
+        'sponsor3.png'
     ],
     'puntos_hidratacion_30': [
         'Km 10 - RP 74',
