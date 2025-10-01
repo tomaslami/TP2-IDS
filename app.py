@@ -1,20 +1,23 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory, url_for, redirect, flash
+from flask import Flask, render_template, request, send_from_directory, url_for, redirect, flash
 from flask_mail import Mail, Message
+from dotenv import load_dotenv
 import os
 
+load_dotenv()
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret' 
 
-app.config['SECRET_KEY'] = 'secret'
-
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME', 'tu-email@gmail.com')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD', 'app-password-o-token')
-app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', 'tu-email@gmail.com')
+# Variables de entorno para el envio de mail.
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True') == 'True'
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL', 'False') == 'True'
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
 
 mail = Mail(app)
+
 
 info = {
     'nombre': 'Rally MTB 2025',
@@ -53,7 +56,7 @@ info = {
     ],
     'punto_largada_llegada': 'Plaza Independencia, Tandil',
     'whatsapp_contacto': '+54 9 249 4 000000',
-    'email_contacto': 'organizacion@ejemplo.com',
+    'email_contacto': '6dcortez@gmail.com',
     'map_embed_src': 'https://www.google.com/maps?q=Plaza+Independencia+Tandil&output=embed'
 }
 
