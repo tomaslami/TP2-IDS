@@ -22,7 +22,7 @@ mkdir -p "$trabajopractico2"
 mkdir -p "$trabajopractico2"/.venv
 mkdir -p "$trabajopractico2"/static/css
 mkdir -p "$trabajopractico2"/static/images
-mkdir -p "$trabajopractico2"/templates
+mkdir -p "$trabajopractico2"/templates 
 
 cd "$trabajopractico2"
 
@@ -33,3 +33,7 @@ python3 -m venv .venv
 . .venv/bin/activate
 
 pip3 install Flask
+pip install python-dotenv
+pip install Flask-Mail
+
+echo " --- Ambiente virtual generado --- "
