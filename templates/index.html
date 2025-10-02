@@ -11,7 +11,7 @@
     <p><strong>Fecha:</strong> {{ info.fecha }} {{ info.horario }} · <strong>Lugar:</strong> {{ info.lugar }}</p>
     <div class="d-flex justify-content-center gap-2 mt-3">
       <a href="{{ url_for('registration') }}" class="btn btn-primary">Inscribirme</a>
-      <a href="#recorrido" class="btn btn-outline-light">Ver recorrido</a>
+      <a href="{{ url_for('index') }}#recorrido" class="btn btn-outline-light">Ver recorrido</a>
     </div>
   </div>
 </section>
@@ -19,14 +19,14 @@
 
 <!-- Recorrido / Mapa -->
 <section id="recorrido" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container" >
     <div class="section-title">
       <h2>Recorrido</h2>
     </div>
 
     <div class="row g-4">
       <div class="col-12 col-lg-6">
-        <div class="map-wrap">
+        <div class="">
           <div class="ratio ratio-16x9">
             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1rtTG4Shdds9AXzqtPrSVPngnDM9RpOs&ehbc=2E312F"
               allowfullscreen loading="lazy"></iframe>
@@ -35,7 +35,7 @@
       </div>
 
       <div class="col-12 col-lg-6">
-        <div class="map-wrap">
+        <div class="">
           <div class="ratio ratio-16x9">
             <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1fxcvAarL2qw5WBjtp9k0C3xJsHTk4tg&ehbc=2E312F"
               allowfullscreen loading="lazy"></iframe>
@@ -48,13 +48,13 @@
 
 <!-- Puntos de hidratación por carrera -->
 <section id="hidratacion" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-title">
       <h2>Puntos de hidratación</h2>
     </div>
     <div class="row g-4">
       <div class="col-md-6">
-        <h3 class="h5">Corta (30 km)</h3>
+        <h3 class="h5">Corta (30 km)</h3>
         <ul class="list-group list-group-flush">
           {% for p in info.puntos_hidratacion_30 %}
           <li class="list-group-item">{{ p }}</li>
@@ -75,7 +75,7 @@
 
 <!-- ======= Kit de Carrera ======= -->
 <section id="kit" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-title">
       <h2>Kit de carrera</h2>
     </div>
@@ -93,7 +93,7 @@
 
 <!-- ======= Modalidades y costos ======= -->
 <section id="modalidades" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-title">
       <h2>Modalidades y costos</h2>
     </div>
@@ -116,7 +116,7 @@
 
 <!-- ======= Auspiciantes ======= -->
 <section id="auspiciantes" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container">
     <div class="section-title">
       <h2>Auspiciantes</h2>
       <p>Gracias por el apoyo</p>
@@ -134,7 +134,7 @@
 
 <!-- ======= Documentos ======= -->
 <section id="documentos" class="section">
-  <div class="container" data-aos="fade-up">
+  <div class="container" >
     <div class="section-title">
       <h2>Documentación</h2>
     </div>
