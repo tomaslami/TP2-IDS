@@ -11,7 +11,6 @@ done
 
 MAIL_USERNAME="$correo1"
 
-
 while true; do
     read -s -p "Ingrese la contrasena: " contrasena1
     echo
@@ -24,7 +23,6 @@ MAIL_PASSWORD="$contrasena1"
 
 MAIL_DEFAULT_SENDER="$MAIL_USERNAME"
 
-# Crear archivo .env (sobrescribe si ya existe)
 cat > "$ENV_FILE" <<EOF
 MAIL_SERVER="smtp.gmail.com"
 MAIL_PORT="587"
