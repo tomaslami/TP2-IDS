@@ -19,7 +19,6 @@ Le solicitará correo y credenciales para el envio de mail de inscripciones.
   flask run
   Hacer CTRL+click al enlace generado. O bien ingresar mediante un navegador a: localhost:5000
 
-
 Integrantes:
 Matias Juchani
 Tomas Lami Guralnik
