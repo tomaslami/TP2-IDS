@@ -4,7 +4,7 @@ Instrucciones para configurar la app:
 
 1- Descargar repositorio.
 
-2- Copiar el script "ScripTP2.sh" en el directorio donde quiera levantar el ambiente. 
+2- Copiar el script "ScriptTP2.sh" en el directorio donde quiera levantar el ambiente. 
   Ejecutarlo mediante la terminal, con: bash ScriptTP2.sh
   
 3- Ingresar a la carpeta "TP2-IDS" generada por el script.
